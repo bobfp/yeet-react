@@ -19,9 +19,9 @@ export const useSetter = (atom, setter) => {
   };
 };
 
-export const useYeet = atom => lens => {
+export const useLens = (atom, lens) => {
   const [getter, setter] = lens;
-  const state = useGetter(atom)(getter);
-  const setState = useSetter(atom)(setter);
+  const state = useGetter(atom, getter);
+  const setState = useSetter(atom, setter);
   return [state, setState];
 };
