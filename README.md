@@ -84,7 +84,7 @@ const store = createStore({
   counter: {value: 0}
 });
 
-// In a Component...
+// In a component...
 const yeetAge = useSetter('user', (newAge, user) => ({...user, age: newAge}))
 yeetAge(33)
 // {user: name: 'bob', age: 33}
@@ -116,12 +116,28 @@ const store = createStore({
   counter: {value: 0}
 });
 
-// In a Component...
+// In a component...
 const [age, yeetAge] = useLens('user', [
   user => user.age,
-  (newAge, user) => ({...user, age: newAge})
+  (age, user) => ({...user, age})
 ])
 ```
 
 
+
+**YeetContext**
+
+A simple React Context that passes the store down to children.
+
+```js
+const App = () => {
+  const initValue = { counter };
+  const store = createStore(initValue);
+  return (
+    <YeetContext.Provider value={store}>
+      <Counter />
+    </YeetContext.Provider>
+  );
+};
+```
 
