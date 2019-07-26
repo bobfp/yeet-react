@@ -1,6 +1,6 @@
 {
  "name": "@bobfp/yeet-react",
- "version": "1.0.0",
+ "version": "1.0.1",
  "main": "lib/index.js",
  "jsnext:main": "es/index.js",
  "module": "es/index.js",
