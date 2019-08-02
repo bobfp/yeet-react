@@ -15,7 +15,9 @@ export const useGetter = (atom, getter) => {
 export const useSetter = (atom, setter) => {
   const store = useContext(YeetContext);
   return (...args) => {
-    store.publish(atom)(state => setter(...args, state));
+    store.publish(atom)(state => {
+      return setter(...args, state);
+    });
   };
 };
 
