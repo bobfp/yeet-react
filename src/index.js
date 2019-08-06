@@ -12,16 +12,19 @@ export const useGetter = (atom, getter) => {
   return state;
 };
 
-export const useSetter = (atom, setter) => {
+export const useSetter = (atom, setter = null) => {
   const store = useContext(YeetContext);
-  return (...args) => {
-    store.publish(atom)(state => {
-      return setter(...args, state);
-    });
-  };
+  if (setter) {
+    return (...args) => {
+      store.publish(atom)(state => {
+        return setter(...args, state);
+      });
+    };
+  }
+  return newState => store.publish(atom)(() => newState);
 };
 
-export const useLens = (atom, lens) => {
+export const useYeet = (atom, lens = [state => state, null]) => {
   const [getter, setter] = lens;
   const state = useGetter(atom, getter);
   const setState = useSetter(atom, setter);
